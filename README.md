@@ -1,0 +1,1 @@
+This project performs multivariate time series data analytics and chaotic analysis methods.
