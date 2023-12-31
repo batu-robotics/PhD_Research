@@ -32,6 +32,8 @@ X_test = X_test.reshape(-1, 1, 1)
 # Model oluşturma
 model = Sequential()
 model.add(GRU(units=50, activation='tanh', input_shape=(1, 1)))
+model.add(GRU(units=50, activation='tanh', return_sequences=True))
+model.add(GRU(units=50, activation='tanh', return_sequences=True))
 model.add(Dense(units=1))
 model.compile(optimizer='adam', loss='mean_squared_error')
 
@@ -56,7 +58,7 @@ future_predictions = model.predict(future_input)
 # Tahminleri gerçek değerlerle birleştirme
 all_predictions = np.concatenate([y_test.reshape(-1, 1), scaler.inverse_transform(future_predictions.reshape(-1, 1))])
 
-print(f"y_test: {all_predictions}")
+#print(f"y_test: {all_predictions}") Unit test  
 # Gerçek ve tahmin edilen değerleri grafikleme
 # Tahminleri gerçek değerlerle karşılaştırma
 plt.plot(y_test, label='Gerçek Değerler')
